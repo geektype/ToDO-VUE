@@ -1,4 +1,4 @@
-# todo-vue
+# To-Do
 
 > TO-DO app made in Vue.js
 
