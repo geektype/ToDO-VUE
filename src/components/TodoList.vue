@@ -4,16 +4,7 @@
         <todo_list_item v-for="(todo,index) in filtered_todos" v-bind:key="todo.id" :todo="todo" :index="index"
                         @removedTodo="removeTodo">
         </todo_list_item>
-
-        <div class="extra-container">
-            <div v-if="toDoRemaining">
-                <label><input type="checkbox" v-bind:checked="!toDoRemaining" @change="checkAllChange"> Check All</label>
-            </div>
-            <div v-else>
-                <label>🎉 All Done 🎉</label>
-            </div>
-            <div>{{ remaining }} items left</div>
-        </div>
+        <allDoneCheckBox :toDoRemaining="toDoRemaining" @checkAllChanged="checkAllChange"></allDoneCheckBox>
         <div class="extra-container">
             <div>
                 <button :class="{ active: current_filter == 'all' }" @click="updateFilter('all')">All</button>
@@ -32,11 +23,13 @@
 
 <script>
 import todo_list_item from './ToDoItem';
+import allDoneCheckBox from './allDoneCheckBox'
 
 export default {
     name: 'todoList',
     components: {
         todo_list_item,
+        allDoneCheckBox,
     },
     data() {
         return {
