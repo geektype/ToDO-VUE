@@ -1,18 +1,10 @@
 <template>
     <div>
         <input v-bind:placeholder="greetMessage" class="todo-input" v-model="newTodo" @keyup.enter="addToDo">
+        <todo_list_item v-for="(todo,index) in filtered_todos" v-bind:key="todo.id" :todo="todo" :index="index"
+                        @removedTodo="removeTodo">
+        </todo_list_item>
 
-        <div v-for="(todo,index) in filtered_todos" v-bind:key="todo.id" class="todo-item">
-            <div class="todo-item-left">
-                <input type="checkbox" name="done" id="check" v-model="todo.done">
-                <div class="todo-item-label" :class="{ completed : todo.done }" @dblclick="edit(todo)"  v-if="!todo.editing">{{ todo.text }}</div>
-                <input type="text" class="todo-item-edit" v-if="todo.editing" v-model="todo.temp_text" @keyup.enter="exitWithSave(todo)" @blur="exitWithSave(todo)" @keyup.escape="exitWithoutSave(todo)" v-focus>
-            </div>
-
-            <div class="remove-item" @click="removeTodo(index)">
-                &times;
-            </div>
-        </div>
         <div class="extra-container">
             <div v-if="toDoRemaining">
                 <label><input type="checkbox" v-bind:checked="!toDoRemaining" @change="checkAllChange"> Check All</label>
@@ -39,8 +31,13 @@
 </template>
 
 <script>
+import todo_list_item from './ToDoItem';
+
 export default {
     name: 'todoList',
+    components: {
+        todo_list_item,
+    },
     data() {
         return {
             newTodo: "",
@@ -75,14 +72,6 @@ export default {
             ],
             counter: 0,
             current_filter: 'all',
-        }
-    },
-    directives: {
-        focus: {
-            // directive definition
-            inserted: function (el) {
-            el.focus()
-            }
         }
     },
     computed: {
@@ -127,16 +116,7 @@ export default {
             this.counter++;
             this.newTodo = "";
         },
-        edit: function(todo) {
-            todo.editing = true;
-        },
-        exitWithSave: function(todo) {
-            todo.editing = false;
-            todo.text = todo.temp_text;
-        },
-        exitWithoutSave: function(todo) {
-            todo.editing = false;
-        },
+        
         removeTodo: function(id) {
             this.todos.splice(id, 1)
         },
