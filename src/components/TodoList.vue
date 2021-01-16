@@ -13,38 +13,27 @@
       :index="index"
       @removedTodo="removeTodo"
     ></todo_list_item>
-    <allDoneCheckBox :remaining="remaining" @checkAllChanged="checkAllChange"></allDoneCheckBox>
-    <div class="extra-container">
-      <div>
-        <button :class="{ active: current_filter == 'all' }" @click="updateFilter('all')">All</button>
-        <button
-          :class="{ active: current_filter == 'active' }"
-          @click="updateFilter('active')"
-        >Active</button>
-        <button
-          :class="{ active: current_filter == 'completed' }"
-          @click="updateFilter('completed')"
-        >Completed</button>
-      </div>
 
-      <div>
-        <transition name="fade">
-          <button v-if="showClearCompleted" @click="clearCompleted">Clear Completed</button>
-        </transition>
-      </div>
-    </div>
+    <allDoneCheckBox :remaining="remaining" @checkAllChanged="checkAllChange"></allDoneCheckBox>
+    <filterSelect
+      :current_filter="current_filter"
+      @filterChanged="updateFilter"
+      :showClearCompleted="showClearCompleted"
+    ></filterSelect>
   </div>
 </template>
 
 <script>
 import todo_list_item from "./ToDoItem";
 import allDoneCheckBox from "./allDoneCheckBox";
+import filterSelect from "./filterSelect";
 
 export default {
   name: "todoList",
   components: {
     todo_list_item,
-    allDoneCheckBox
+    allDoneCheckBox,
+    filterSelect
   },
   data() {
     return {
@@ -118,7 +107,9 @@ export default {
       this.counter++;
       this.newTodo = "";
     },
-
+    updateFilter: function(status) {
+      this.current_filter = status;
+    },
     removeTodo: function(id) {
       this.todos.splice(id, 1);
     },
@@ -126,9 +117,6 @@ export default {
       this.todos.forEach(todo => {
         todo.done = event.target.checked;
       });
-    },
-    updateFilter: function(status) {
-      this.current_filter = status;
     },
     clearCompleted: function() {
       this.todos = this.todos.filter(todo => !todo.done);
