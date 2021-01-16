@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/381faf55-3649-4137-b1e8-e09a689b90a2/deploy-status)](https://app.netlify.com/sites/zealous-colden-7c526e/deploys)
 # To-Do
 
  A sample TO-DO app made in Vue.js with API integration
