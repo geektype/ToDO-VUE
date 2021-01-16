@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <todoList/>
+    <img src="./assets/logo.png" />
+    <todoList />
   </div>
 </template>
 
 <script>
-import todoList from './components/TodoList'
+import todoList from "./components/TodoList";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     todoList
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
