@@ -1,21 +1,34 @@
 # To-Do
 
-> TO-DO app made in Vue.js
+ A sample TO-DO app made in Vue.js with API integration
 
-## Build Setup
+# Local Development
+## Prerequisites
+- Git v2.28+
+- NPM v6.14+
+- Docker v20.10+ (If using Docker for development)
+- Docker Compose v1.27+ (If using Docker for development)
 
+## Clone Repo
 ``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+$ git clone https://github.com/geektype/ToDO-VUE.git
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Using NPM
+Ensure you are inside the project directory
+``` bash
+$ pwd
+..../ToDo-VUE
+```
+Install project dependencies
+``` bash
+$ npm install
+```
+To run a development server
+``` bash
+$ npm run dev
+```
+Build project for production with minification
+``` bash
+$ npm run build
+```
