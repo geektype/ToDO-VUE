@@ -19,6 +19,7 @@
       :current_filter="current_filter"
       @filterChanged="updateFilter"
       :showClearCompleted="showClearCompleted"
+      @clearCompleted="clearCompleted"
     ></filterSelect>
   </div>
 </template>
